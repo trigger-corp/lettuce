@@ -189,9 +189,9 @@ class FileSystem(object):
             for path, dirs, files in cls.walk(root_path):
                 for filename in fnmatch.filter(files, match):
                     return_files.append(cls.join(path, filename))
-            return return_files
+            return sorted(return_files)
         else:
-            return glob(cls.join(root_path, match))
+            return sorted(glob(cls.join(root_path, match)))
 
     @classmethod
     def extract_zip(cls, filename, base_path='.', verbose=False):
